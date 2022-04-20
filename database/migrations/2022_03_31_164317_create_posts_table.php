@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class CreatePostsTable extends Migration
 {
@@ -20,41 +21,40 @@ class CreatePostsTable extends Migration
             $table->string('slug')->unique();
             $table->text('body');
             $table->string('img1');
-            $table->string('alt1');
-            $table->string('img2');
-            $table->string('alt2');
-            $table->string('img3');
-            $table->string('alt3');
-            $table->string('img4');
-            $table->string('alt4');
-            $table->string('img5');
-            $table->string('alt5');
-            $table->string('img6');
-            $table->string('alt6');
-            $table->string('img7');
-            $table->string('alt7');
-            $table->string('img8');
-            $table->string('alt8');
-            $table->string('img9');
-            $table->string('alt9');
-            $table->string('img10');
-            $table->string('alt10');
-            $table->string('img11');
-            $table->string('alt11');
-            $table->string('img12');
-            $table->string('alt12');
-            $table->string('img13');
-            $table->string('alt13'); 
-            $table->string('img14');
-            $table->string('alt14'); 
-            $table->string('img15');
-            $table->string('alt15'); 
-            $table->string('img16');
-            $table->string('alt16');
+            $table->string('alt1')->nullable();
+            $table->string('img2')->nullable();
+            $table->string('alt2')->nullable();
+            $table->string('img3')->nullable();
+            $table->string('alt3')->nullable();
+            $table->string('img4')->nullable();
+            $table->string('alt4')->nullable();
+            $table->string('img5')->nullable();
+            $table->string('alt5')->nullable();
+            $table->string('img6')->nullable();
+            $table->string('alt6')->nullable();
+            $table->string('img7')->nullable();
+            $table->string('alt7')->nullable();
+            $table->string('img8')->nullable();
+            $table->string('alt8')->nullable();
+            $table->string('img9')->nullable();
+            $table->string('alt9')->nullable();
+            $table->string('img10')->nullable();
+            $table->string('alt10')->nullable();
+            $table->string('img11')->nullable();
+            $table->string('alt11')->nullable();
+            $table->string('img12')->nullable();
+            $table->string('alt12')->nullable();
+            $table->string('img13')->nullable();
+            $table->string('alt13')->nullable(); 
+            $table->string('img14')->nullable();
+            $table->string('alt14')->nullable(); 
+            $table->string('img15')->nullable();
+            $table->string('alt15')->nullable(); 
+            $table->string('img16')->nullable();
+            $table->string('alt16')->nullable();
             $table->boolean('active')->default(1);
             $table->timestamps();
-            $table->created_at();
-            $table->updated_at();
+
         });
     }
 
