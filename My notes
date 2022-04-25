@@ -1,0 +1,14 @@
+SELECT news.title,images.img1 FROM news, images WHERE news.code = images.code;
+INSERT INTO posts (title, img1)
+SELECT news.title,images.img1 FROM news, images WHERE news.code = images.code;
+
+INSERT INTO posts (id, user_id, title ,slug ,body ,created_at, updated_at, active
+,img1 ,alt1, img2, alt2, img3 ,alt3,img4 ,alt4,img5 ,alt5,img6 ,alt6,img7 ,alt7,img8 ,alt8,img9 ,alt9
+,img10 ,alt10, img11 ,alt11,img12 ,alt12,img13 ,alt13,img14 ,alt14,img15 ,alt15,img16 ,alt16)
+SELECT news.id, news.user_id ,news.title, news.slug, news.body, news.created_at, news.updated_at,news.active, images.img1, images.alt1, images.img2, images.alt2, images.img3, images.alt3, 
+images.img4, images.img4, images.img5, images.alt5, images.img6, images.alt6, images.img7, images.alt7,
+images.img8, images.alt8, images.img9, images.alt9, images.img10, images.alt10,images.img11,images.alt11,
+images.img12, images.alt12, images.img13, images.alt13, images.img14, images.alt14, images.img15,images.alt15,
+images.img16, images.alt16
+ FROM news,images
+     WHERE news.id=images.id;
