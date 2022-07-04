@@ -29,7 +29,8 @@ class PostList extends Component
 
     public function posts()
     {
-        $posts = Post::all();
+       // $posts = Post::all()->orderByDesc('created_at');
+        $posts = Post::orderBy('created_at', 'ASC')->limit(3)->get();
         return $posts;
     }
 }
