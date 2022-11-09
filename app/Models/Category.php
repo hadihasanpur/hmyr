@@ -14,7 +14,7 @@ class Category extends Model
 
     public function getIsActiveAttribute($is_active)
     {
-        return $is_active ? 'فعال' : 'غیرفعال' ;
+        return $is_active ? 'فعال' : 'غیرفعال';
     }
 
     public function parent()
@@ -29,6 +29,6 @@ class Category extends Model
 
     public function attributes()
     {
-        return $this->belongsToMany(Attribute::class , 'attribute_category');
+        return $this->belongsToMany(Attribute::class, 'attribute_category');
     }
 }

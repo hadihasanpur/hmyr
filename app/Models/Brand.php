@@ -31,5 +31,6 @@ class Brand extends Model
     {
         return $is_active ? 'فعال' : 'غیرفعال' ;
     }
+    
 
 }
