@@ -1,12 +1,12 @@
 @extends('home.layouts.home')
 
 @section('title')
-    صفحه ای اصلی
+صفحه اصلی
 @endsection
 
 @section('script')
-    <script>
-        $('.variation-select').on('change' , function(){
+<script>
+    $('.variation-select').on('change' , function(){
             let variation = JSON.parse(this.value);
             let variationPriceDiv = $('.variation-price');
             variationPriceDiv.empty();
@@ -35,440 +35,424 @@
             $('.quantity-input').val(1);
 
         });
-    </script>
+</script>
 @endsection
 
 @section('content')
 
-    <div class="slider-area section-padding-1">
-        <div class="slider-active owl-carousel nav-style-1">
-            @foreach ($sliders as $slider)
-                <div class="single-slider slider-height-1 bg-paleturquoise">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6 text-right">
-                                <div class="slider-content slider-animated-1">
-                                    <h1 class="animated">
-                                        {{ $slider->title }}
-                                    </h1>
-                                    <p class="animated">
-                                        {{ $slider->text }}
-                                    </p>
-                                    <div class="slider-btn btn-hover">
-                                        <a class="animated" href="{{ $slider->button_link }}">
-                                            <i class="{{ $slider->button_icon }}"></i>
-                                            {{ $slider->button_text }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6">
-                                <div class="slider-single-img slider-animated-1">
-                                    <img class="animated" src="{{ asset(env('BANNER_IMAGES_UPLOAD_PATH') . $slider->image) }}" alt="{{ $slider->image }}" />
-                                </div>
-                            </div>
-                        </div>
+<div class="mx-auto grid_container sm:grid_container_sm md:grid_container_md lg:grid_container_lg">
+
+    <section id="fnew" class="rounded-lg md:grid_fnew">
+        <div id="content"
+            class="grid bg-white border border-gray-200 rounded-lg shadow-md md:grid-cols-2 dark:bg-gray-800 dark:border-gray-700 gap-x-3 gap-y-3 sm:grid_top_sm">
+            <div id="TopPost" class="">
+                <div id="topimg" class="relative overflow-hidden">
+                    <img class="object-cover w-full" src="https://hmyr.ir//backend/web/uploads/991228%20(8).jpeg"
+                        alt="Flower and sky" />
+                    <div class="absolute bottom-0 left-0 w-full px-6 overflow-hidden bg-slate-600">
+                        <h4 class="w-full mb-3 text-xl font-semibold text-white top-10 tracking-tigh">مجمع عمومی عادی
+                            سالیانه
+                            سازمان همیاری برگزار شد</h4>
                     </div>
                 </div>
-            @endforeach
-        </div>
-    </div>
-
-    <div class="banner-area pt-100 pb-65">
-        <div class="container">
-            <div class="row">
-                @foreach ($indexTopBanners->chunk(3)->first() as $banner)
-                    <div class="col-lg-4 col-md-4">
-                        <div class="single-banner mb-30 scroll-zoom">
-                            <a href="product-details.html">
-                                <img class="animated" src="{{ asset(env('BANNER_IMAGES_UPLOAD_PATH') . $banner->image) }}"
-                                    alt="" />
-                                </a>
-                            <div class="banner-content-2 banner-position-5">
-                                <h4>{{ $banner->title }}</h4>
-                            </div>
-                        </div>
+            </div>
+            <div class="grid grid-rows-2 ">
+                <div id="2new" class="sm:grid md:flex">
+                    <div>
+                        <img class="object-cover w-full mt-4" src="https://hmyr.ir//backend/web/uploads/981009h.jpg"
+                            alt="Flower and sky" />
                     </div>
-                @endforeach
-
-                @foreach ($indexTopBanners->chunk(3)->last() as $banner)
-                    <div class="col-lg-6 col-md-6">
-                        <div class="single-banner mb-30 scroll-zoom">
-                            <a href="product-details.html"><img class="animated" src="{{ asset(env('BANNER_IMAGES_UPLOAD_PATH') . $banner->image) }}"
-                                    alt="" /></a>
-                            <div class="{{ $loop->last ? 'banner-content-3 banner-position-7' : 'banner-content banner-position-6 text-right' }}">
-                                <h3>{{ $banner->title }}</h3>
-                                <a href="{{ $banner->button_link }}">{{ $banner->button_text }}</a>
-                            </div>
-                        </div>
+                    <div>
+                        <p
+                            class="px-4 mt-4 font-normal leading-6 text-justify text-gray-700 dark:text-gray-400 indent-16">
+                            دومین متن خبری سایت باید از نظر ظاهری در بهترین مکان سایت قرار داشته باشد.سرلشکر باقری در
+                            این
+                            بازدید در جریان آخرین توانمندی‌ها در حوزه تولید انواع پهپادهای نظامی، تهاجمی و دوربرد ارتش
+                            قرار گرفت</p>
                     </div>
-                @endforeach
+                </div>
+                <div id="3new" class="sm:grid md:flex">
+                    <div>
+                        <img class="object-cover w-full" src="https://hmyr.ir//backend/web/uploads/981009f.jpg"
+                            alt="Flower and sky" />
+                    </div>
+                    <div>
+                        <p
+                            class="px-4 mt-2 mb-3 font-normal leading-6 text-justify text-gray-700 dark:text-gray-400 indent-16">
+                            سرلشکر محمد
+                            باقری رئیس
+                            ستاد کل نیروهای
+                            سومین متن خبری سایت باید از نظر ظاهری در بهترین مکان سایت قرار داشته باشد.سرلشکر باقری در
+                            این
+                            بازدید در جریان آخرین توانمندی‌ها در حوزه تولید انواع پهپادهای نظامی، تهاجمی و دوربرد ارتش
+                            قرار گرفت</p>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="product-area pb-70">
-        <div class="container">
-            <div class="section-title text-center pb-40">
-                <h2> لورم ایپسوم </h2>
-                <p>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    چاپگرها و متون
-                    بلکه روزنامه و مجله
+        <div id="sidebar"
+            class="mx-2 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 md:hidden lg:grid md:grid_top_sm">
+            <div class="">
+                <img class="content-center object-cover px-6 mx-auto mt-2 rounded-lg shadow-lg" data-aos="fade-down"
+                    data-aos-delay="400" src="https://hmyr.ir//backend/web/images/bahari.jpg" all="33" />
+                <p class="px-4 mt-4 text-center text-gray-700 dark:text-white">
+                    محمود اسکندری سرهنگ‌دوم خلبان اف-۴ فانتوم ۲ نیروی هوایی ارتش
                 </p>
             </div>
-            <div class="product-tab-list nav pb-60 text-center flex-row-reverse">
-                <a class="active" href="#product-1" data-toggle="tab">
-                    <h4>مردانه</h4>
+        </div>
+    </section>
+
+    <section id="new">
+        <div class="grid grid-cols-1 px-2 lg:grid-cols-4 md:grid-cols-2 gap-x-3 gap-y-3 dark:bg-gray-900">
+            <div
+                class="bg-white border border-gray-200 rounded-lg shadow-md lg:lg:max-w-sm dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <img class="rounded-t-lg" src="https://hmyr.ir//backend/web/uploads/981009e.jpg" alt="">
                 </a>
-                <a href="#product-2" data-toggle="tab">
-                    <h4>زنانه</h4>
+                <div class="p-5">
+                    <a href="#">
+                        <h5 class="mb-2 font-bold tracking-tight text-center text-gray-900 text-1xl dark:text-white">
+                            بازدید
+                            پرسنل
+                            سازمان
+                            از مناظر زیبای اروپای مرکزی
+                        </h5>
+                    </a>
+                    <p class="mb-3 font-normal leading-6 text-justify text-gray-700 dark:text-gray-400 indent-16">سرلشکر
+                        محمد
+                        باقری رئیس
+                        ستاد کل نیروهای
+                        مسلح از یکی از
+                        پایگاه‌های سری و زیرزمینی پهپادی ارتش جمهوری اسلامی ایران بازدید کرد.سرلشکر باقری در این بازدید
+                        در جریان
+                        آخرین
+                        توانمندی‌ها در حوزه تولید انواع پهپادهای نظامی، تهاجمی و دوربرد ارتش قرار گرفت..</p>
+                    <a href="#"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        ادامه</a>
+                </div>
+            </div>
+
+            <div
+                class="bg-white border border-gray-200 rounded-lg shadow-md lg:max-w-sm dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <img class="rounded-t-lg" src="https://hmyr.ir//backend/web/uploads/981009h.jpg" alt="">
                 </a>
-                <a href="#product-3" data-toggle="tab">
-                    <h4>بچه گانه</h4>
+                <div class="p-5">
+                    <a href="#">
+                        <h5 class="mb-2 font-bold tracking-tight text-center text-gray-900 text-1xl dark:text-white">
+                            بازدید
+                            سرلشکر باقری
+                            از
+                            پهیاد های
+                            ارتش
+                        </h5>
+                    </a>
+                    <p class="mb-3 font-normal leading-6 text-justify text-gray-700 dark:text-gray-400 indent-16">سرلشکر
+                        محمد
+                        باقری رئیس
+                        ستاد کل نیروهای
+                        مسلح از یکی از
+                        پایگاه‌های سری و زیرزمینی پهپادی ارتش جمهوری اسلامی ایران بازدید کرد.سرلشکر باقری در این بازدید
+                        در جریان
+                        آخرین
+                        توانمندی‌ها در حوزه تولید انواع پهپادهای نظامی، تهاجمی و دوربرد ارتش قرار گرفت..</p>
+                    <a href="#"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-indigo-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        ادامه</a>
+                </div>
+            </div>
+
+            <div
+                class="bg-white border border-gray-200 rounded-lg shadow-md lg:max-w-sm dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <img class="rounded-t-lg" src="https://hmyr.ir//backend/web/uploads/980828e.jpg" alt="">
                 </a>
+                <div class="p-5">
+                    <a href="#">
+                        <h5 class="mb-2 font-bold tracking-tight text-center text-gray-900 text-1xl dark:text-white">
+                            بازدید
+                            سرلشکر باقری
+                            از
+                            پهیاد های
+                            ارتش
+                        </h5>
+                    </a>
+                    <p class="mb-3 font-normal leading-6 text-justify text-gray-700 dark:text-gray-400 indent-16">سرلشکر
+                        محمد
+                        باقری رئیس
+                        ستاد کل نیروهای
+                        مسلح از یکی از
+                        پایگاه‌های سری و زیرزمینی پهپادی ارتش جمهوری اسلامی ایران بازدید کرد.سرلشکر باقری در این بازدید
+                        در جریان
+                        آخرین
+                        توانمندی‌ها در حوزه تولید انواع پهپادهای نظامی، تهاجمی و دوربرد ارتش قرار گرفت..</p>
+                    <a href="#"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-indigo-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        ادامه</a>
+                </div>
             </div>
-            <div class="tab-content jump-2">
-                <div id="product-1" class="tab-pane active">
-                    <div class="ht-products product-slider-active owl-carousel">
-                        <!--Product Start-->
-                        @foreach ($products as $product)
-                        <div class="ht-product ht-product-action-on-hover ht-product-category-right-bottom mb-30">
-                            <div class="ht-product-inner">
-                                <div class="ht-product-image-wrap">
-                                    <a href="product-details.html" class="ht-product-image">
-                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}" alt="{{ $product->name }}" />
-                                    </a>
-                                    <div class="ht-product-action">
-                                        <ul>
-                                            <li>
-                                                <a href="#" data-toggle="modal" data-target="#productModal-{{$product->id}}"><i
-                                                        class="sli sli-magnifier"></i><span
-                                                        class="ht-product-action-tooltip"> مشاهده سریع
-                                                    </span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="sli sli-heart"></i><span
-                                                        class="ht-product-action-tooltip"> افزودن به
-                                                        علاقه مندی ها </span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="sli sli-refresh"></i><span
-                                                        class="ht-product-action-tooltip"> مقایسه
-                                                    </span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="ht-product-content">
-                                    <div class="ht-product-content-inner">
-                                        <div class="ht-product-categories">
-                                            <a href="#">{{ $product->category->name }}</a>
-                                        </div>
-                                        <h4 class="ht-product-title text-right">
-                                            <a href="#"> {{ $product->name }} </a>
-                                        </h4>
-                                        <div class="ht-product-price">
-                                            {{-- @if($product->quantity_check)
-                                                @if($product->sale_check)
-                                                    <span class="new">
-                                                        {{ number_format($product->sale_check->sale_price) }}
-                                                        تومان
-                                                    </span>
-                                                    <span class="old">
-                                                        {{ number_format($product->sale_check->price) }}
-                                                        تومان
-                                                    </span>
-                                                @else
-                                                    <span class="new">
-                                                        {{ number_format($product->price_check->price) }}
-                                                        تومان
-                                                    </span>
-                                                @endif
-                                            @else
-                                                <div class="not-in-stock">
-                                                    <p class="text-white">ناموجود</p>
-                                                </div>
-                                            @endif --}}
-                                        </div>
-                                        <div class="ht-product-ratting-wrap mt-4">
-                                            <div data-rating-stars="5"
-                                                data-rating-readonly="true"
-                                                data-rating-value="{{ ceil($product->rates->avg('rate')) }}">
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                </div>
-                            </div>
+            <div
+                class="bg-white border border-gray-200 rounded-lg shadow-md lg:max-w-sm dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <img class="rounded-t-lg" src="https://hmyr.ir//backend/web/uploads/980828h.jpg" alt="">
+                </a>
+                <div class="p-5">
+                    <a href="#">
+                        <h5 class="mb-2 font-bold tracking-tight text-center text-gray-900 text-1xl dark:text-white">
+                            بازدید
+                            سرلشکر باقری
+                            از
+                            پهیاد های ارتش
+                        </h5>
+                    </a>
+                    <p class="mb-3 font-normal leading-6 text-justify text-gray-700 dark:text-gray-400 indent-16">سرلشکر
+                        محمد
+                        باقری رئیس
+                        ستاد کل نیروهای
+                        مسلح از یکی از پایگاه‌های سری و زیرزمینی پهپادی ارتش جمهوری اسلامی ایران بازدید کرد.سرلشکر باقری
+                        در این
+                        بازدید در جریان آخرین توانمندی‌ها در حوزه تولید انواع پهپادهای نظامی، تهاجمی و دوربرد ارتش قرار
+                        گرفت..
+                    </p>
+                    <a href="#"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-indigo-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        ادامه</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="service">
+        <div style="height: 100px; overflow: hidden">
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%">
+                <path class="fill-gray-100 dark:fill-gray-800"
+                    d="M-37.02,164.10 C328.66,20.03 595.03,10.16 618.74,-65.81 L500.00,150.00 L0.00,150.00 Z"></path>
+            </svg>
+        </div>
+        <section class="bg-gray-100 dark:bg-gray-800">
+            <div class="container px-10 py-4 mx-auto lg:w-4/5 lg:px-20">
+                <div data-aos="fade-up" class="mb-12 text-center">
+                    <h1 class="mb-5 text-2xl font-bold dark:text-white">
+                        سازمان همیاری
+                        <span class="text-indigo-600">شهرداریهای استان آذربایجان غربی</span>
+                    </h1>
+                    <p class="mb-6 leading-8 text-gray-700 dark:text-white">فعالیت های <span
+                            class="px-1 text-indigo-600">توليدي</span> <Span class="px-1 text-indigo-600">هتل داری
+                        </Span><Span class="px-1 text-indigo-600">بازرگانی</Span>
+
+                    </p>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="400"
+                    class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 dark:text-white">
+                    <div class="flex">
+                        <div>
+                            <i
+                                class="fas fa-cogs text-[2rem] p-4 rounded-full border border-1 border-indigo-600 text-indigo-600"></i>
                         </div>
-                        @endforeach
-                        <!--Product End-->
+                        <p>
+                        <ul class="mr-5">
+                            <li>اجرای راهسازی، زیر سازی راه آهن و باند فرودگاه</li>
+                            <li>اجرای شبکه های آبیاری و زهکشی</li>
+                            <li>اجرای پل سازی</li>
+
+                        </ul>
+                        </p>
+
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <i
+                                class="fas fa-drafting-compass text-[2rem] p-4 rounded-full border border-1 border-indigo-600 text-indigo-600"></i>
+
+                        </div>
+                        <ul class="mr-5">
+                            <li>احداث طرحهای آبخیزداری</li>
+                            <li>احداث پارکها و مراکز تفریحی</li>
+                            <li>احداث مجتمع های ساختمانی</li>
+                            <li>تولید پلهای تی شکل، دیوار های پیش ساخته</li>
+
+                        </ul>
+
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <i
+                                class="fas fa-users-cog text-[2rem] p-4 rounded-full border border-1 border-indigo-600 text-indigo-600"></i>
+                        </div>
+                        <ul class="mr-5">
+                            <li> تولید انواع لوله های مسلح و غیر مسلح</li>
+                            <li>تولید انواع بلوک، انواع جداول در سایز های مختلف</li>
+                            <li>تولید سنگفرشهای بتنی، دال بتنی، باکس های بتنی</li>
+                        </ul>
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <i
+                                class="fas fa-handshake text-[2rem] p-4 rounded-full border border-1 border-indigo-600 text-indigo-600"></i>
+                        </div>
+                        <ul class="mr-5">
+                            <li>انواع فعالیت های بازرکانی</li>
+                            <li>واردات </li>
+                            <li>صادرات</li>
+                        </ul>
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <i
+                                class="fas fa-truck-monster text-[2rem] p-4 rounded-full border border-1 border-indigo-600 text-indigo-600"></i>
+                        </div>
+                        <ul class="mr-5">
+                            <li>انواع ماشین آلات سنگین و سبک</li>
+                            <li> </li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <i
+                                class="fas fa-hotel text-[2rem] p-4 rounded-full border border-1 border-indigo-600 text-indigo-600"></i>
+                        </div>
+                        <ul class="mr-5">
+                            <li>هتل مروارید با انواع اتاق های مجهز جهت اقامت</li>
+                            <li>پذیرای از مراسم و جشن ها با سالن های پذیرایی بزرگ و زیبا</li>
+                            <li>کافی شاپ</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div style="height: 100px; overflow: hidden">
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%">
+                <path class="fill-gray-100 dark:fill-gray-800"
+                    d="M-12.19,148.31 C145.82,120.69 576.41,-24.36 565.12,-20.42 L499.66,-2.66 L0.00,0.00 Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section id="price"
+        class="bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div class="container px-10 py-4 mx-auto lg:w-4/5 lg:px-20">
+            <div data-aos="fade-up" class="mb-12 text-center">
+                <h1 class="mb-5 text-2xl font-bold dark:text-white">
+                    هتل مروارید
+                    <span class="text-indigo-600">ارومیه</span>
+                </h1>
+                <p class="mb-6 leading-8 text-gray-700 dark:text-white">
+                    هتل مروارید ارومیه در کنار رودخانه شهر چائی ارومیه و با داشتن اتاق ها و
+                    رستورانهایی با چشم اندازهای زیبا و انواع غذاهای ایرانی و فرنگی آماده پذیرای از مهمانان می باشد.
+                </p>
+            </div>
+
+            <div class="flex flex-col justify-between gap-8 lg:flex-row">
+                <div data-aos="flip-right" data-aos-delay="600"
+                    class="px-20 py-5 text-center border border-t-8 border-indigo-600 rounded-lg dark:bg-gray-800 dark:text-white">
+                    <div class="py-5">
+                        <h1 class="text-xl font-bold">اتاق تک خوابه</h1>
+                        <p class="my-6">
+                            <span class="text-2xl font-bold">250,000</span> تومان
+                        </p>
+                        <p class="font-bold text-gray-700 dark:text-white">امکانات اتاق</p>
+                    </div>
+                    <hr />
+                    <div class="py-5 space-y-4">
+                        <p class="">حمام و دستشویی </p>
+                        <p>تلویزیون</p>
+                        <p>یخچال</p>
+                        <p>میز تحریر</p>
+                        <p>سیستم تهویه مرکزی</p>
+                    </div>
+                    <div class="py-4">
+                        <button class="btn btn-primary">رزرو اتاق</button>
+                    </div>
+                </div>
+
+                <div data-aos="flip-right" data-aos-delay="400"
+                    class="px-20 py-5 text-center text-white bg-indigo-600 border border-t-8 border-indigo-600 rounded-lg">
+                    <div class="py-5">
+                        <h1 class="text-2xl font-bold">اتاق دوتخته</h1>
+                        <p class="my-6">
+                            <span class="text-2xl font-bold">150,000</span> تومان
+                        </p>
+                        <p class="font-bold">ماهانه</p>
+                    </div>
+                    <hr />
+                    <div class="py-5 space-y-4">
+                        <p class="">حمام و دستشویی </p>
+                        <p>تلویزیون</p>
+                        <p>یخچال</p>
+                        <p>میز تحریر</p>
+                        <p>سیستم تهویه مرکزی</p>
+                    </div>
+                    <div class="py-4">
+                        <button class="btn btn-secondary">رزرو اتاق</button>
+                    </div>
+                </div>
+
+                <div data-aos="flip-right" data-aos-delay="600"
+                    class="px-20 py-5 text-center border border-t-8 border-indigo-600 rounded-lg dark:bg-gray-800 dark:text-white">
+                    <div class="py-5">
+                        <h1 class="text-xl font-bold">اتاق سه خوابه</h1>
+                        <p class="my-6">
+                            <span class="text-2xl font-bold">450,000</span> تومان
+                        </p>
+                        <p class="font-bold text-gray-700 dark:text-white">امکانات اتاق</p>
+                    </div>
+                    <hr />
+                    <div class="py-5 space-y-4">
+                        <p class="">حمام و دستشویی </p>
+                        <p>تلویزیون</p>
+                        <p>یخچال</p>
+                        <p>میز تحریر</p>
+                        <p>سیستم تهویه مرکزی</p>
+                    </div>
+                    <div class="py-4">
+                        <button class="btn btn-primary">رزرو اتاق</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="testimonial-area pt-80 pb-95 section-margin-1" style="background-image: url({{asset('images/home/bg-1.jpg')}});">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 ml-auto mr-auto">
-                    <div class="testimonial-active owl-carousel nav-style-1">
-                        <div class="single-testimonial text-center">
-                            <img src="{{ asset('images/home/testi-1.png') }}" alt="" />
-                            <p>
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                گرافیک است. چاپگرها و
-                                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی
-                                مورد نیاز و
-                                کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
-                                درصد گذشته، حال و
-                                آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت
-                            </p>
-                            <div class="client-info">
-                                <img src="{{ asset('images/home/testi.png') }}" alt="" />
-                                <h5>لورم ایپسوم</h5>
+    <section id="galery"
+        class="bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div class="container px-10 py-4 mx-auto lg:w-4/5 lg:px-20">
+            <div data-aos="fade-left" data-aos-delay="400" class="mb-12 text-center">
+                <h1 class="mb-5 text-2xl font-bold dark:text-white">
+                    تصاویری از زیرمجموع های
+                    <span class="text-indigo-600">سازمان همیاری</span>
+                </h1>
+                <p class="mb-6 leading-8 text-gray-700 dark:text-white">
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                    استفاده از طراحان گرافیک است.
+                </p>
+            </div>
+
+            <div data-aos="fade-up" x-data="tabs">
+                <ul class="flex justify-center dark:text-white">
+                    <template x-for="(tab , index) in tabs" :key="index">
+                        <li x-text="tab.display_category" @click="tabName = tab.category"
+                            class="px-4 py-2 cursor-pointer"
+                            :class="tabName == tab.category && 'border-b-4 border-indigo-600'"></li>
+                    </template>
+                </ul>
+                <template x-for="(tab , index) in tabs" :key="index">
+                    <div x-show="tab.category == tabName"
+                        class="grid grid-cols-1 gap-5 mt-5 sm:grid-cols-2 lg:grid-cols-3">
+                        <template x-for="(image , index) in tab.images" :key="index">
+                            <div>
+                                <img class="rounded-lg" :src="image" alt="" />
                             </div>
-                        </div>
-                        <div class="single-testimonial text-center">
-                            <img src="{{ asset('images/home/testi-2.png') }}" alt="" />
-                            <p>
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                گرافیک است. چاپگرها و
-                                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی
-                                مورد نیاز و
-                                کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
-                                درصد گذشته، حال و
-                                آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت
-                            </p>
-                            <div class="client-info">
-                                <img src="{{ asset('images/home/testi.png') }}" alt="" />
-                                <h5>لورم ایپسوم</h5>
-                            </div>
-                        </div>
+                        </template>
                     </div>
-                </div>
+                </template>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="banner-area pt-80 pb-120">
-        <div class="container">
-            <div class="row">
-                @foreach ($indexBottomBanners as $banner)
-                    <div class="col-lg-6 col-md-6 text-right">
-                        <div class="single-banner mb-30 scroll-zoom">
-                            <a href="product-details.html"><img src="{{ asset(env('BANNER_IMAGES_UPLOAD_PATH') . $banner->image) }}" alt="" /></a>
-                            <div class="banner-content {{ $loop->last ? 'banner-position-4' : 'banner-position-3' }}">
-                                <h3>{{ $banner->title }}</h3>
-                                <h2>{{ $banner->text }}</h2>
-                                <a href="{{ $banner->button_link }}">{{ $banner->button_text }}</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    <div class="feature-area" style="direction: rtl;">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-4">
-                    <div class="single-feature text-right mb-40">
-                        <div class="feature-icon">
-                            <img src="{{ asset('images/home/free-shipping.png') }}" alt="" />
-                        </div>
-                        <div class="feature-content">
-                            <h4>لورم ایپسوم</h4>
-                            <p>لورم ایپسوم متن ساختگی</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4">
-                    <div class="single-feature text-right mb-40 pl-50">
-                        <div class="feature-icon">
-                            <img src="{{ asset('images/home/support.png') }}" alt="" />
-                        </div>
-                        <div class="feature-content">
-                            <h4>لورم ایپسوم</h4>
-                            <p>24x7 لورم ایپسوم</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4">
-                    <div class="single-feature text-right mb-40">
-                        <div class="feature-icon">
-                            <img src="{{ asset('images/home/security.png') }}" alt="" />
-                        </div>
-                        <div class="feature-content">
-                            <h4>لورم ایپسوم</h4>
-                            <p>لورم ایپسوم متن ساختگی</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    @foreach ($products as $product)
-    <div class="modal fade" id="productModal-{{$product->id}}" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">x</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-7 col-sm-12 col-xs-12" style="direction: rtl;">
-                            <div class="product-details-content quickview-content">
-                                <h2 class="text-right mb-4">{{ $product->name }}</h2>
-                                <div class="product-details-price variation-price">
-                                    {{-- @if($product->quantity_check)
-                                        @if($product->sale_check)
-                                            <span class="new">
-                                                {{ number_format($product->sale_check->sale_price) }}
-                                                تومان
-                                            </span>
-                                            <span class="old">
-                                                {{ number_format($product->sale_check->price) }}
-                                                تومان
-                                            </span>
-                                        @else
-                                            <span class="new">
-                                                {{ number_format($product->price_check->price) }}
-                                                تومان
-                                            </span>
-                                        @endif
-                                    @else
-                                        <div class="not-in-stock">
-                                            <p class="text-white">ناموجود</p>
-                                        </div>
-                                    @endif --}}
-                                </div>
-                                <div class="pro-details-rating-wrap">
-
-                                    <div data-rating-stars="5"
-                                        data-rating-readonly="true"
-                                        data-rating-value="{{ ceil($product->rates->avg('rate')) }}">
-                                    </div>
-                                    <span class="mx-3">|</span>
-                                    <span>3 دیدگاه</span>
-                                </div>
-                                <p class="text-right">
-                                    {{ $product->descriptio }}
-                                </p>
-                                <div class="pro-details-list text-right">
-                                    <ul class="text-right">
-                                        @foreach ($product->attributes()->with('attribute')->get() as $attribute)
-                                        <li> -
-                                            {{ $attribute->attribute->name }}
-                                            :
-                                            {{ $attribute->value }}
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-
-                                {{-- @if($product->quantity_check)
-
-                                    @php
-                                        if($product->sale_check)
-                                        {
-                                            $variationProductSelected = $product->sale_check;
-                                        }else{
-                                            $variationProductSelected = $product->price_check;
-                                        }
-                                    @endphp
-                                    <div class="pro-details-size-color text-right">
-                                        <div class="pro-details-size w-50">
-                                            <span>{{ App\Models\Attribute::find($product->variations->first()->attribute_id)->name }}</span>
-                                            <select class="form-control variation-select">
-                                                @foreach ($product->variations()->where('quantity' , '>' , 0)->get() as $variation)
-                                                    <option
-                                                    value="{{ json_encode($variation->only(['id' , 'quantity','is_sale' , 'sale_price' , 'price'])) }}"
-                                                    {{ $variationProductSelected->id == $variation->id ? 'selected' : '' }}
-                                                    >{{ $variation->value }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                    <div class="pro-details-quality">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box quantity-input" type="text" name="qtybutton" value="1" data-max="5" />
-                                        </div>
-                                        <div class="pro-details-cart">
-                                            <a href="#">افزودن به سبد خرید</a>
-                                        </div>
-                                        <div class="pro-details-wishlist">
-                                            <a title="Add To Wishlist" href="#"><i class="sli sli-heart"></i></a>
-                                        </div>
-                                        <div class="pro-details-compare">
-                                            <a title="Add To Compare" href="#"><i class="sli sli-refresh"></i></a>
-                                        </div>
-                                    </div>
-                                @else
-                                    <div class="not-in-stock">
-                                        <p class="text-white">ناموجود</p>
-                                    </div>
-                                @endif --}}
-
-
-                                <div class="pro-details-meta">
-                                    <span>دسته بندی :</span>
-                                    <ul>
-                                        <li><a href="#">{{ $product->category->parent->name }}، {{ $product->category->name }}</a></li>
-                                    </ul>
-                                </div>
-                                <div class="pro-details-meta">
-                                    <span>تگ ها :</span>
-                                    <ul>
-                                        @foreach ($product->tags as $tag)
-                                        <li><a href="#">{{ $tag->name }}{{ $loop->last ? '' : '،' }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-5 col-sm-12 col-xs-12">
-                            <div class="tab-content quickview-big-img">
-                                <div id="pro-primary-{{$product->id}}" class="tab-pane fade show active">
-                                    <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}" alt="" />
-                                </div>
-                                @foreach ($product->images as $image)
-                                    <div id="pro-{{$image->id}}" class="tab-pane fade">
-                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}" alt="" />
-                                    </div>
-                                @endforeach
-                            </div>
-                            <!-- Thumbnail Large Image End -->
-                            <!-- Thumbnail Image End -->
-                            <div class="quickview-wrap mt-15">
-                                <div class="quickview-slide-active owl-carousel nav nav-style-2" role="tablist">
-                                    <a class="active" data-toggle="tab" href="#pro-primary-{{$product->id}}">
-                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}" alt="" />
-                                    </a>
-                                    @foreach ($product->images as $image)
-                                    <a data-toggle="tab" href="#pro-{{$image->id}}">
-                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}" alt="" />
-                                    </a>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforeach
-    <!-- Modal end -->
+</div>
 
 @endsection

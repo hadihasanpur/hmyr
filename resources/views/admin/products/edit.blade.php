@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-edit products
+ویرایش محصول
 @endsection
 
 @section('script')

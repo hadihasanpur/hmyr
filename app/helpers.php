@@ -14,6 +14,16 @@ function generateFileName($name)
     return $year . '_' . $month . '_' . $day . '_' . $hour . '_' . $minute . '_' . $second . '_' . $microsecond . '_' . $name;
 }
 
+function generateFileName1($name)
+{
+    $year = Carbon::now()->year;
+    $month = Carbon::now()->month;
+    $day = Carbon::now()->day;
+    return $year . '_' . $month . '_' . $day . '_'  . '_' . $name;
+}
+
+
+
 function convertShamsiToGregorianDate($date)
 {
     if ($date == null) {

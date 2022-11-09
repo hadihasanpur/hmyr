@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Post;
 use App\Models\Banner;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -21,5 +22,10 @@ class HomeController extends Controller
 
         // dd($product->sale_check);
         return view('home.index' , compact('sliders' , 'indexTopBanners' , 'indexBottomBanners' , 'products'));
+    }
+    public function Mailindex(){
+        $posts = Post::where('is_active', 1)->orderBy('created_at')->get();
+        return view('home.HomeIndex', compact('posts'));
+
     }
 }

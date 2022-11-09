@@ -25,7 +25,7 @@ require("md.bootstrappersiandatetimepicker/dist/jquery.md.bootstrap.datetimepick
         $(".sidebar .collapse").collapse("hide");
     }
 
-    // Toggle the side navigation when window is resized below 480px
+    // Toggle the side nav igation when window is resized below 480px
     if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
         $("body").addClass("sidebar-toggled");
         $(".sidebar").addClass("toggled");

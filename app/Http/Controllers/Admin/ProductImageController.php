@@ -65,31 +65,23 @@ class ProductImageController extends Controller
             'primary_image' => 'nullable|mimes:jpg,jpeg,png,svg',
             'images.*' => 'nullable|mimes:jpg,jpeg,png,svg',
         ]);
-
         if ($request->primary_image == null && $request->images == null) {
             return redirect()->back()->withErrors(['msg' => 'تصویر یا تصاویر محصول الزامی هست']);
         }
-
         try {
             DB::beginTransaction();
-
             if ($request->has('primary_image')) {
-
                 $fileNamePrimaryImage = generateFileName($request->primary_image->getClientOriginalName());
                 $request->primary_image->move(public_path(env('PRODUCT_IMAGES_UPLOAD_PATH')), $fileNamePrimaryImage);
-
                 $product->update([
                     'primary_image' => $fileNamePrimaryImage
                 ]);
             }
-
             if ($request->has('images')) {
-
+                dd($request->images);
                 foreach ($request->images as $image) {
                     $fileNameImage = generateFileName($image->getClientOriginalName());
-
                     $image->move(public_path(env('PRODUCT_IMAGES_UPLOAD_PATH')), $fileNameImage);
-
                     ProductImage::create([
                         'product_id' => $product->id,
                         'image' => $fileNameImage

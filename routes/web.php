@@ -18,15 +18,21 @@ use App\Http\Controllers\Home\AddressController;
 use App\Http\Controllers\Home\CompareController;
 use App\Http\Controllers\Home\PaymentController;
 use App\Http\Controllers\Home\SitemapController;
+use App\Http\Controllers\Admin\AuctionController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Home\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\PostImageController;
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Home\UserProfileController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Home\UsersProfileController;
+use App\Http\Controllers\Admin\AuctionFilesController;
+use App\Http\Controllers\Admin\DepartmentImageController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Home\CommentController as HomeCommentController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
@@ -49,6 +55,9 @@ Route::get('/admin-panel/dashboard', function () {
 
 Route::prefix('admin-panel/management')->name('admin.')->middleware('role:admin')->group(function () {
     Route::resource('posts', PostController::class);
+    Route::resource('auctions', AuctionController::class);
+    Route::resource('departments', DepartmentController::class);
+    Route::resource('projects', ProjectController::class);
     Route::resource('brands', BrandController::class);
     Route::resource('attributes', AttributeController::class);
     Route::resource('categories', CategoryController::class);
@@ -72,6 +81,26 @@ Route::prefix('admin-panel/management')->name('admin.')->middleware('role:admin'
     Route::delete('/products/{product}/images-destroy', [ProductImageController::class, 'destroy'])->name('products.images.destroy');
     Route::put('/products/{product}/images-set-primary', [ProductImageController::class, 'setPrimary'])->name('products.images.set_primary');
     Route::post('/products/{product}/images-add', [ProductImageController::class, 'add'])->name('products.images.add');
+
+
+    // Edit Post Image created by myself
+    Route::get('/posts/{post}/images-edit', [PostImageController::class, 'edit'])->name('posts.images.edit');
+    Route::delete('/posts/{post}/images-destroy', [PostImageController::class, 'destroy'])->name('posts.images.destroy');
+    Route::put('/posts/{post}/images-set-primary', [PostImageController::class, 'setPrimary'])->name('posts.images.set_primary');
+    Route::post('/posts/{post}/images-add', [PostImageController::class, 'add'])->name('posts.images.add');
+
+    // Edit Department Image created by myself
+    Route::get('/departments/{department}/images-edit', [DepartmentImageController::class, 'edit'])->name('departments.images.edit');
+    Route::delete('/departments/{department}/images-destroy', [DepartmentImageController::class, 'destroy'])->name('departments.images.destroy');
+    Route::put('/departments/{department}/images-set-primary', [DepartmentImageController::class, 'setPrimary'])->name('departments.images.set_primary');
+    Route::put('/departments/{department}/images-set-underImage', [DepartmentImageController::class, 'underImage'])->name('departments.images.underImage');
+    Route::post('/departments/{department}/images-add', [DepartmentImageController::class, 'add'])->name('departments.images.add');
+    Route::post('/departments/{department}/store-Avatar', [DepartmentImageController::class, 'add'])->name('departments.images.storeAvatar');
+
+    // Edit Auction Image created by myself
+    Route::get('/auctions/{auction}/files-edit', [AuctionFilesController::class, 'edit'])->name('auctions.files.edit');
+    Route::delete('/auctions/{auction}/files-destroy', [AuctionFilesController::class, 'destroy'])->name('auctions.files.destroy');
+    Route::post('/auctions/{auction}/files-add', [AuctionFilesController::class, 'add'])->name('auctions.files.add');
 
     // Edit Product Category
     Route::get('/products/{product}/category-edit', [ProductController::class, 'editCategory'])->name('products.category.edit');

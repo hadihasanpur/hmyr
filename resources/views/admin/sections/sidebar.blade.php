@@ -23,19 +23,21 @@
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNews" aria-expanded="true"
         aria-controls="collapsePages">
         <i class="fas fa-fw fa-cart-plus"></i>
-        <span> اخبار سازمان </span>
+        <span> عملیات سازمان </span>
     </a>
     <div id="collapseNews" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ route('admin.posts.index') }}">اخبار</a>
-            <a class="collapse-item" href="#">تصاویر</a>
+            <a class="collapse-item" href="{{ route('admin.auctions.index') }}">مزایده</a>
+            <a class="collapse-item" href="{{ route('admin.departments.index') }}">معاونت ها و واحدها</a>
+            <a class="collapse-item" href="{{ route('admin.projects.index') }}">پروژه ها</a>
         </div>
     </div>
 </li>
 {{-- @endrole --}}
 @endcan
    
-@role('admin')
+{{-- @role('admin') --}}
 <!-- Divider -->
 <hr class="sidebar-divider">    <!-- Heading -->
     <div class="sidebar-heading">
@@ -64,7 +66,7 @@
         </div>
     </li>
 
-    @endrole
+    {{-- @endrole --}}
 
     <hr class="sidebar-divider">
 
