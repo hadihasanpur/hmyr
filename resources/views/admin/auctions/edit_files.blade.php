@@ -15,7 +15,7 @@
 @section('content')
 <!-- Content Row -->
 <div class="row">
-    <div class="col-xl-12 col-md-12 mb-4 p-5 bg-white">
+    <div class="p-5 mb-4 bg-white col-xl-12 col-md-12">
         <div class="mb-4 text-center text-md-right">
             <h5 class="font-weight-bold">ویرایش اسناد مزایده : {{ $auction->title }}</h5>
         </div>
@@ -28,24 +28,24 @@
                 <div class="form-group col-md-4">
                     <div class="custom-file">
                         <input type="file" name="docs[]" multiple class="custom-file-input" id="docs">
-                        <label class="custom-file-label" for="files"> اضافه کردن اسناد </label>
+                        <label class="custom-file-label" for="docs"> اضافه کردن اسناد </label>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-outline-primary mt-4" type="submit">افزودن سند</button>
-            <a href="{{ route('admin.auctions.index') }}" class="btn btn-dark mt-4 mr-3">بازگشت</a>
+            <button class="mt-4 btn btn-outline-primary" type="submit">افزودن سند</button>
+            <a href="{{ route('admin.auctions.index') }}" class="mt-4 mr-3 btn btn-dark">بازگشت</a>
         </form>
         <div class="row">
             @foreach ($auction->files as $file)
-            <div class="col-md-3 text-center mt-5">
-                <div class="card mb-3">
+            <div class="mt-5 text-center col-md-3">
+                <div class="mb-3 card">
                     <a href="{{ url(env('AUCTION_FILES_UPLOAD_PATH') . $file->file) }}">{{ $file->file }}</a>
                     <div class="card-body">
                         <form action="{{ route('admin.auctions.files.destroy', ['auction' => $auction->id]) }}" method="post">
                             @method('DELETE')
                             @csrf
                             <input class="text-center" type="hidden" name="auction_id" value="{{ $file->id }}">
-                            <button class="btn btn-danger btn-sm mb-3" type="submit">حذف</button>
+                            <button class="mb-3 btn btn-danger btn-sm" type="submit">حذف</button>
                         </form>
                     </div>
                 </div>

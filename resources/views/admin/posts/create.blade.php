@@ -1,5 +1,4 @@
 @extends('admin.layouts.admin')
-
 @section('title')
 ایجاد خبر
 @endsection
@@ -34,20 +33,27 @@
             <div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
+                        <label for="name">پیش خبر</label>
+                        <input class="form-control" id="pre_title" name="pre_title" type="text" value="{{ old('pre_title') }}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
                         <label for="name">عنوان خبر</label>
                         <input class="form-control" id="title" name="title" type="text" value="{{ old('title') }}">
                     </div>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="description">متن خبر</label>
+                    <label for="abstract">چکیده</label>
+                    <textarea class="form-control" id="abstract"
+                        name="abstract">{{ old('abstract') }}</textarea>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="description">متن</label>
                     <textarea class="form-control" id="description"
                         name="description">{{ old('description') }}</textarea>
                 </div>
                 {{-- Post Image Section --}}
-                <div class="col-md-12">
-                    <hr>
-                    <p>تصاویر محصول : </p>
-                </div>
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="primary_image"> انتخاب تصویر اصلی </label>
@@ -78,7 +84,5 @@
             </div>
         </form>
     </div>
-
 </div>
-
 @endsection

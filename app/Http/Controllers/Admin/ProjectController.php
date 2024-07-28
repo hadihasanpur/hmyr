@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
 {
@@ -26,7 +27,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+         $projects = Project::all();
+        return view('admin.projects.create', compact('projects'));
     }
 
     /**
@@ -37,7 +39,36 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $request->validate([
+            'project' => 'required',
+            'employer' => 'required',
+            'consultant' => 'required',
+            'location' => 'required',
+            'cost' => 'required',
+            'Projectstart' => 'required',
+            'Projectend' => 'required'
+        ]);
+        try {
+           DB::beginTransaction();
+            $project = Project::create([
+                'project' => $request->project,
+                'employer' => $request->employer,
+                'consultant' => $request->consultant,
+                'location' => $request->location,
+                'cost' => $request->cost,
+                'Projectstart' => convertShamsiToGregorianDate($request->Projectstart),
+                'Projectend' => convertShamsiToGregorianDate($request->Projectend)
+            ]);
+//dd($project);
+            
+            DB::commit();
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            alert()->error('مشکل اساسی در ایجاد پروژه', $ex->getMessage())->persistent('حله');
+            return redirect()->back();
+        }
+        alert()->success('پروژه مورد نظر ایجاد شد', 'باتشکر');
+        return redirect()->route('admin.projects.index');
     }
 
     /**
@@ -46,9 +77,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -57,9 +88,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        //
+       return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -69,9 +100,28 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Project $project)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $project->update([
+                'project' => $request->project,
+                'employer' => $request->employer,
+                'consultant' => $request->consultant,
+                'location' => $request->location,
+                'cost' => $request->cost,
+                'Projectstart' => convertShamsiToGregorianDate($request->Projectstart),
+                'Projectend' => convertShamsiToGregorianDate($request->Projectend)
+
+            ]);
+            DB::commit();
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            alert()->error('مشکل در ویرایش \روژه', $ex->getMessage())->persistent('حله');
+            return redirect()->back();
+        }
+        alert()->success('پروژه مورد نظر ویرایش شد', 'باتشکر');
+        return redirect()->route('admin.projects.index');
     }
 
     /**
@@ -80,8 +130,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        project::destroy($project->id);
+        alert()->success('پروژه  مورد نظر حدف شد', 'باتشکر');
+        return redirect()->back();
     }
 }

@@ -1,29 +1,24 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-create Auctions
+پروژه های اجرا شده سازمان
 @endsection
 
 @section('script')
 <script>
-    $('#file').change(function() {
-            //get the file name
-            var fileName = $(this).val();
-            //replace the "Choose a file" label
-            $(this).next('.custom-file-label').html(fileName);
-        });
-
         $('#DateFrom1').MdPersianDateTimePicker({
         targetTextSelector: '#InputDateFrom1',
         englishNumber: true,
         enableTimePicker: true,
-        textFormat: 'yyyy-MM-dd HH:mm:ss',
+                textFormat: 'yyyy-MM-dd HH:mm:ss',
+
         });
         $('#DateFrom2').MdPersianDateTimePicker({
         targetTextSelector: '#InputDateFrom2',
         englishNumber: true,
         enableTimePicker: true,
-        textFormat: 'yyyy-MM-dd HH:mm:ss',
+                textFormat: 'yyyy-MM-dd HH:mm:ss',
+
         });
 </script>
 @endsection
@@ -33,75 +28,65 @@ create Auctions
 <!-- Content Row -->
 <div class="row">
 
-    <div class="col-xl-12 col-md-12 mb-4 p-4 bg-white">
+    <div class="p-4 mb-4 bg-white col-xl-12 col-md-12">
         <div class="mb-4 text-center text-md-right">
-            <h5 class="font-weight-bold">مزایده جدید</h5>
+            <h5 class="font-weight-bold">پروژه جدید</h5>
         </div>
         <hr>
 
         @include('admin.sections.errors')
 
-        <form action="{{ route('admin.departments.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="name">قسمت مربوطه </label>
-                        <input class="form-control" id="title" name="title" type="text" value="{{ old('title') }}">
+                        <label for="project">نام پروژه </label>
+                        <input class="form-control" id="project" name="project" type="text"
+                            value="{{ old('project') }}">
                     </div>
                 </div>
                 <div class="form-gro‍up col-md-12">
-                    <label for="description">شرح وظایف</label>
-                    <textarea class="form-control" id="body" name="body">{{ old('description') }}</textarea>
+                    <label for="employer"> کارفرما</label>
+                    <input class="form-control" id="employer" name="employer" type="text" value="{{ old('employer') }}">
                 </div>
                 <div class="form-gro‍up col-md-12">
-                    <label for="description"> مدیر مربوطه</label>
-                    <textarea class="form-control" id="body" name="body">{{ old('manager') }}</textarea>
+                    <label for="consultant">مشاور</label>
+                    <input class="form-control" id="consultant" name="consultant" type="text" value="{{ old('consultant') }}">
                 </div>
                 <div class="form-gro‍up col-md-12">
-                    <label for="description"> عنوان شغلی </label>
-                    <textarea class="form-control" id="body" name="body">{{ old('ad') }}</textarea>
+                    <label for="location"> محل اجرا </label>
+                    <input class="form-control" id="location" name="location" type="text" valur="{{ old('location') }}">
                 </div>
                 <div class="form-gro‍up col-md-12">
-                    <label for="description"> مدرک تحصیلی </label>
-                    <textarea class="form-control" id="body" name="body">{{ old('post') }}</textarea>
+                    <label for="cost"> هزینه اجرا</label>
+                    <input class="form-control" id="cost" name="cost" type="text" value="{{ old('cost') }}">
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="primary_image"> انتخاب تصویر اصلی </label>
-                    <div class="custom-file">
-                        <input type="file" name="mage" class="custom-file-input" id="image">
-                        <label class="custom-file-label" for="image"> انتخاب تصویر مدیر مربوطه </label>
+                <div class="mt-4 row">
+                    <div class="input-group col-md-4">
+                        <label class="mt-1 ml-1"> تاریخ شروع : </label>
+                        <div class="order-2 text-center input-group-prepend">
+                            <span class="input-group-text" id="DateFrom1">
+                                <i class="fas fa-clock"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="InputDateFrom1" name="Projectstart"
+                            value="{{ verta(old('Projectstart')) }}">
+                    </div>
+                    <div class="input-group col-md-4">
+                        <label class="mt-1 ml-1"> تاریخ پایان : </label>
+                        <div class="order-2 text-center input-group-prepend">
+                            <span class="input-group-text" id="DateFrom2">
+                                <i class="fas fa-clock"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="InputDateFrom2" name="Projectend"
+                            value="{{ verta(old('Projectend')) }}">
                     </div>
                 </div>
-                <div class="form-gro‍up col-md-12">
-                    <label for="description">آدرس </label>
-                    <textarea class="form-control" id="address" name="address">{{ old('address') }}</textarea>
-                </div>
-                <div class="form-gro‍up col-md-12">
-                    <label for="description">شماره دقتر </label>
-                    <textarea class="form-control" id="tel1" name="address">{{ old('tel1') }}</textarea>
-                </div>
-                <div class="form-gro‍up col-md-12">
-                    <label for="description">شماره داخلی </label>
-                    <textarea class="form-control" id="tel2" name="address">{{ old('tel2') }}</textarea>
-                </div>
-                <div class="form-gro‍up col-md-12">
-                    <label for="description">شماره همراه </label>
-                    <textarea class="form-control" id="tel2" name="address">{{ old('tel2') }}</textarea>
-                </div>
-                <div class="form-gro‍up col-md-12">
-                    <label for="description">شماره نمابر </label>
-                    <textarea class="form-control" id="tel2" name="address">{{ old('tel2') }}</textarea>
-                </div>
-                <div class="form-gro‍up col-md-12">
-                    <label for="description">صندوق پستی </label>
-                    <textarea class="form-control" id="email" name="address">{{ old('email') }}</textarea>
-                </div>
-
             </div>
-
-            <button class="btn btn-outline-primary mt-5" type="submit">ثبت</button>
-            <a href="{{ route('admin.deartments.index') }}" class="btn btn-dark mt-5 mr-3">بازگشت</a>
+            <button class="mt-5 btn btn-outline-primary" type="submit">ثبت</button>
+            <a href="{{ route('admin.projects.index') }}" class="mt-5 mr-3 btn btn-dark">بازگشت</a>
         </form>
     </div>
 

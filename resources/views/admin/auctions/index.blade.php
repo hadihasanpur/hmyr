@@ -7,12 +7,13 @@
 <div class="row">
     <div class="col-xl-12 col-md-12 mb-4 p-4 bg-white">
         <div class="d-flex flex-column text-center flex-md-row justify-content-md-between mb-4">
-            <h5 class="font-weight-bold mb-3 mb-md-0">لیست مزایده ها </h5>
             <a class="btn btn-sm btn-outline-primary" href="{{ route('admin.auctions.create') }}">
                 <i class="fa fa-plus"></i>
                 ایجاد مزایده
             </a>
+            
         </div>
+        <div class="text-center"></div>
         <div class="table-responsive">
             <table class="table table-bordered table-striped text-center">
                 <thead>
@@ -29,7 +30,7 @@
                 <tbody>
                     @foreach ($auctions as $key => $auction)
                     <tr>
-                        <th>
+                        <th class="font-titr">
                             <a href="{{ route('admin.auctions.show', ['auction' => $auction->id]) }}">
                                 {{ $auctions->firstItem() + $key }}
                             </a>
@@ -39,19 +40,19 @@
                                 {{ $auction->title }}
                             </a>
                         </th>
-                        <th>
+                        <th class="font-titr">
                             <a href="{{ route('admin.auctions.show', ['auction' => $auction->id]) }}">
-                                {{ verta($auction->created_at) }}
+                                {{ verta($auction->created_at)->formatDate() }}
                             </a>
                         </th>
-                        <th>
+                        <th class="font-titr">
                             <a href="{{ route('admin.auctions.show', ['auction' => $auction->id]) }}">
-                                {{ verta($auction->started_at)->format('Y.m.d') }}
+                                {{ verta($auction->started_at)->format('Y/m/d') }}
                             </a>
                         </th>
-                        <th>
+                        <th class="font-titr">
                             <a href="{{ route('admin.auctions.show', ['auction' => $auction->id]) }}">
-                                {{ verta($auction->finished_at)->format('Y.m.d') }}
+                                {{ verta($auction->finished_at)->format('Y/m/d') }}
                             </a>
                         </th>
                         <th>
@@ -92,8 +93,9 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex justify-content-center mt-5">
-            {{ $auctions->render() }}
+        <div class="d-flex justify-content-center mt-5 font-titr">
+            {{ $auctions->links('pagination::bootstrap-4') }}
+
         </div>
     </div>
 </div>

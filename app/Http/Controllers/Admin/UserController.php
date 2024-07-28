@@ -14,7 +14,9 @@ class UserController extends Controller
     public function index()
     {
         $users = User::latest()->paginate(20);
-        return view('admin.users.index', compact('users'));
+        $roles = Role::all();
+//dd($users);
+        return view('admin.users.index', compact('users','roles'));
     }
 
     public function edit(User $user)
@@ -32,11 +34,12 @@ class UserController extends Controller
             $user->update([
                 'name' => $request->name,
                 'cellphone' => $request->cellphone,
+                'email' => $request->email,
             ]);
 
             $user->syncRoles($request->role);
 
-            $permissions = $request->except('_token', 'cellphone', 'role', 'name', '_method');
+            $permissions = $request->except('_token', 'cellphone', 'role', 'name', 'email', '_method');
             $user->syncPermissions($permissions);
 
             DB::commit();

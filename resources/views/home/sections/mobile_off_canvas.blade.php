@@ -5,7 +5,7 @@
 
     <div class="header-mobile-aside-wrap">
         <div class="mobile-search">
-            <form class="search-form" action="#">
+            <form class="hidden search-form" action="#">
                 <input type="text" placeholder=" ... جستجو " />
                 <button class="button-search">
                     <i class="sli sli-magnifier"></i>
@@ -18,7 +18,7 @@
             <div class="mobile-navigation">
                 <!-- mobile menu navigation start -->
                 <nav>
-                    <ul class="mobile-menu text-right">
+                    <ul class="text-right mobile-menu">
                         <li class="menu-item-has-children">
                             <a href="index.html"> صفحه ای اصلی </a>
                         </li>
@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <div class="mobile-social-wrap text-center">
+        <div class="text-center mobile-social-wrap">
             <a class="facebook" href="#"><i class="sli sli-social-facebook"></i></a>
             <a class="twitter" href="#"><i class="sli sli-social-twitter"></i></a>
             <a class="pinterest" href="#"><i class="sli sli-social-pinterest"></i></a>

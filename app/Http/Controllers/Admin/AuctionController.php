@@ -7,6 +7,7 @@ use App\Models\AuctionFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Admin\AuctionFilesController;
 
 class AuctionController extends Controller
@@ -22,8 +23,6 @@ class AuctionController extends Controller
 
         return view('admin.auctions.index', compact('auctions'));
     }
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -46,16 +45,17 @@ class AuctionController extends Controller
         $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'is_active' => 'required',
             'file' => 'required',
             'started_at' => 'required',
             'finished_at' => 'required'
         ]);
+        //dd($request);
         try {
             DB::beginTransaction();
             $auctionFilesController = new AuctionFilesController();
             $fileNames = $auctionFilesController->upload($request->file);
             $auction = Auction::create([
+                'user_id' => $request->user()->id,
                 'title' => $request->title,
                 'body' => $request->body,
                 'is_active' => $request->is_active,
@@ -69,9 +69,9 @@ class AuctionController extends Controller
                 ]);
             }
             DB::commit();
-        } catch (\Exception $ex) {
+        } 
+        catch (\Exception $ex) {
             DB::rollBack();
-
             alert()->error('مشکل اساسی در ایجاد مزایده', $ex->getMessage())->persistent('حله');
             return redirect()->back();
         }
@@ -99,7 +99,6 @@ class AuctionController extends Controller
     public function edit(Auction $auction)
     {
         $files = $auction->files;
-     //dd($auction,$files);
         return view('admin.auctions.edit', compact('auction', 'files'));
     }
     /**
@@ -111,12 +110,7 @@ class AuctionController extends Controller
      */
     public function update(Request $request, Auction $auction,AuctionFile $file)
     {
-        $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-            'is_active' => 'required',
-            'created_at' => 'nullable|date',
-        ]);
+        
     //   dd($request->all());
         try {
             DB::beginTransaction();
@@ -129,7 +123,7 @@ class AuctionController extends Controller
                 'finished_at' => convertShamsiToGregorianDate($request->finished_at),
             ]);
             foreach ($file as $file) {
-               $auctionfiles = AuctionFile::all();
+                $auctionfiles = AuctionFile::all();
                 $auctionfiles->add([
                     'file' => $request->file
                 ]);
@@ -152,9 +146,12 @@ class AuctionController extends Controller
      */
     public function destroy(Auction $auction)
     {
-        $auction->delete();
+        foreach ($auction->files as $auctionFile) {
+                    File::delete(public_path(env('AUCTION_FILES_UPLOAD_PATH')) . $auctionFile->file);
 
-        alert()->success('بنر مورد نظر حذف شد', 'باتشکر');
+        }
+        $auction->delete();
+        alert()->success('مزایده مورد نظر حذف شد', 'باتشکر');
         return redirect()->route('admin.auctions.index');
     }
 }

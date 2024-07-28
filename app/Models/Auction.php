@@ -2,14 +2,10 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 
 
-use App\Models\AuctionFiles;
 use Illuminate\Database\Eloquent\Model;
-
 use Cviebrock\EloquentSluggable\Sluggable;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Auction extends Model
@@ -38,7 +34,7 @@ class Auction extends Model
     {
         return $is_active ? 'فعال' : 'غیرفعال';
     }
-    
+
     public function files()
     {
         return $this->hasMany(AuctionFile::class);

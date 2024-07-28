@@ -7,6 +7,7 @@ use App\Models\PostImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Admin\PostImageController;
 
 class PostController extends Controller
@@ -18,7 +19,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(20);
+       $posts = Post::latest()->paginate(20);
+
+        
+//dd($project);
         return view('admin.posts.index', compact('posts'));
     }
     /**
@@ -41,17 +45,17 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
-            'is_active' => 'required',
-            'primary_image' => 'required|mimes:jpg,jpeg,png,svg',
+            'primary_image' => 'required|mimes:jpg,jpeg,png,svg,jfif',
         ]);
         try {
             DB::beginTransaction();
             $postImageController = new PostImageController();
             $fileNameImages = $postImageController->upload($request->primary_image, $request->images);
-            //dd($fileNameImages);
             $post = Post::create([
+                'user_id' => $request->user()->id,
                 'title' => $request->title,
+                'pre_title' => $request->pre_title,
+                'abstract' => $request->abstract,
                 'description' => $request->description,
                 'primary_image' => $fileNameImages['fileNamePrimaryImage'],
                 'is_active' => $request->is_active,
@@ -79,7 +83,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $images = $post->images;
+        $images = $post->postImages;
         return view('admin.posts.show', compact('post', 'images'));
     }
     /**
@@ -90,7 +94,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $images = $post->images;
+
+        return view('admin.posts.edit', compact('post', 'images'));
     }
     /**
      * Update the specified resource in storage.
@@ -99,25 +105,22 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post,PostImage $postImage)
     {
-        //dd($request->all());
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
-            'is_active' => 'required',
-            'created_at' => 'nullable|date',
         ]);
         try {
             DB::beginTransaction();
             $post->update([
                 'title' => $request->title,
+                'pre_title' => $request->pre_title,
+                'abstract' => $request->abstract,
                 'description' => $request->description,
                 'is_active' => $request->is_active,
-                // 'created_at' => convertShamsiToGregorianDate($post('created_at')),
                 'created_at' => convertShamsiToGregorianDate($request->created_at)
-                // ' date_on_sale_from' => convertShamsiToGregorianDate($value['date_on_sale_from']),
             ]);
+
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
@@ -135,8 +138,17 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        File::delete(public_path(env('POST_IMAGES_UPLOAD_PATH')) . $post->primary_image);
+        foreach ($post->postImages as $postImage) {
+                    File::delete(public_path(env('POST_IMAGES_UPLOAD_PATH')) . $postImage->image);
+
+        }
         $post->delete();
+
         alert()->success('خبر مورد نظر حذف شد', 'باتشکر');
         return redirect()->route('admin.posts.index');
     }
+
+    
 }
+

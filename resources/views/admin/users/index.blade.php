@@ -23,6 +23,8 @@ index Users
                         <th>نام</th>
                         <th>ایمیل</th>
                         <th>شماره تلفن</th>
+                      {{-- /  <th> نقش</th> --}}
+                        <th> ایمیل</th>
                         <th>عملیات</th>
                     </tr>
                 </thead>
@@ -40,6 +42,12 @@ index Users
                         </th>
                         <th>
                             {{ $user->cellphone }}
+                        </th>
+                         {{-- <th>
+                            {{ $role->id }}
+                        </th> --}}
+                         <th>
+                            {{ $user->email }}
                         </th>
                         <th>
                             <a class="btn btn-sm btn-outline-info mr-3 mt-2"

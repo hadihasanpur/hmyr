@@ -59997,7 +59997,7 @@ __webpack_require__(/*! md.bootstrappersiandatetimepicker/dist/jquery.md.bootstr
 
   if ($(window).width() < 768) {
     $(".sidebar .collapse").collapse("hide");
-  } // Toggle the side navigation when window is resized below 480px
+  } // Toggle the side nav igation when window is resized below 480px
 
 
   if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
@@ -60239,9 +60239,9 @@ MIT License, https://github.com/cozeit/czMore/blob/master/LICENSE.md
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/laravel_eCommerce/resources/js/admin/admin.js */"./resources/js/admin/admin.js");
-__webpack_require__(/*! /var/www/laravel_eCommerce/resources/scss/admin/admin.scss */"./resources/scss/admin/admin.scss");
-module.exports = __webpack_require__(/*! /var/www/laravel_eCommerce/resources/scss/home/home.scss */"./resources/scss/home/home.scss");
+__webpack_require__(/*! /var/www/laravel_hmyr/resources/js/admin/admin.js */"./resources/js/admin/admin.js");
+__webpack_require__(/*! /var/www/laravel_hmyr/resources/scss/admin/admin.scss */"./resources/scss/admin/admin.scss");
+module.exports = __webpack_require__(/*! /var/www/laravel_hmyr/resources/scss/home/home.scss */"./resources/scss/home/home.scss");
 
 
 /***/ })

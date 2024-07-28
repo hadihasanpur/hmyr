@@ -1,9 +1,7 @@
 @extends('admin.layouts.admin')
-
 @section('title')
-مزایده جدید
+ویرایش مزایده 
 @endsection
-
 @section('script')
 <script>
        
@@ -40,8 +38,7 @@
 @section('content')
 <!-- Content Row -->
 <div class="row">
-
-    <div class="col-xl-12 col-md-12 mb-4 p-4 bg-white">
+    <div class="p-4 mb-4 bg-white col-xl-12 col-md-12">
         <div class="mb-4 text-center text-md-right">
             <h5 class="font-weight-bold">ویرایش مزایده</h5>
         </div>
@@ -66,7 +63,6 @@
                                 <option value="0">غیرفعال</option>
                             </select>
                         </div>
-                        
                     </div>
                     <div class="row">
                         <div class="form-group col">
@@ -78,7 +74,7 @@
                         <div class="col">
                             <label> تاریخ درج مزایده </label>
                             <div class="input-group">
-                                <div class="input-group-prepend order-2">
+                                <div class="order-2 input-group-prepend">
                                     <span class="input-group-text" id="DateFrom1">
                                         <i class="fas fa-clock"></i>
                                     </span>
@@ -90,7 +86,7 @@
                         <div class="col">
                             <label> تاریخ شروع مزایده </label>
                             <div class="input-group">
-                                <div class="input-group-prepend order-2">
+                                <div class="order-2 input-group-prepend">
                                     <span class="input-group-text" id="DateFrom2">
                                         <i class="fas fa-clock"></i>
                                     </span>
@@ -100,9 +96,9 @@
                             </div>
                         </div>
                         <div class="col">
-                            <label> تاریخ شروع مزایده </label>
+                            <label> تاریخ پایان مزایده </label>
                             <div class="input-group">
-                                <div class="input-group-prepend order-2">
+                                <div class="order-2 input-group-prepend">
                                     <span class="input-group-text" id="DateFrom3">
                                         <i class="fas fa-clock"></i>
                                     </span>
@@ -113,8 +109,10 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-outline-primary mt-5" type="submit">ثبت</button>
-                <a href="{{ route('admin.auctions.index') }}" class="btn btn-dark mt-5 mr-3">بازگشت</a>
+                
+            </div>
+            <button class="mt-5 btn btn-outline-primary" type="submit">ثبت</button>
+            <a href="{{ route('admin.auctions.index') }}" class="mt-5 mr-3 btn btn-dark">بازگشت</a>
         </form>
     </div>
 </div>

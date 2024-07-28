@@ -19521,7 +19521,7 @@ __webpack_require__(/*! ./files/rating.js */ "./resources/js/home/files/rating.j
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/laravel_eCommerce/resources/js/home/home.js */"./resources/js/home/home.js");
+module.exports = __webpack_require__(/*! /var/www/laravel_hmyr/resources/js/home/home.js */"./resources/js/home/home.js");
 
 
 /***/ })

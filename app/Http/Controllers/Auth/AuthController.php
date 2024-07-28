@@ -30,7 +30,7 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $socialite_user->getName(),
                 'provider_name' => $provider,
-                'avatar' => $socialite_user->getAvatar(),
+                'profile_photo_path' => $socialite_user->getAvatar(),
                 'email' => $socialite_user->getEmail(),
                 'password' => Hash::make($socialite_user->getId()),
                 'email_verified_at' => Carbon::now()
@@ -46,7 +46,13 @@ class AuthController extends Controller
     {
         auth()->logout($request);
 
-        return redirect('/login');
+        return redirect('/');
+    }
+    //Hadi
+    public function register(Request $request)
+    {
+        return view('auth.register');
+
     }
     //Hadi
 }

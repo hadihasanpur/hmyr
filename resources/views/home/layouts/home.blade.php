@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html x-data="darkMode" lang="fa" dir="rtl" :class="{ 'dark' : darkMode }">
-
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf8mb4_0900_ai_ci" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>سازمان همیاری</title>
+    <title> سازمان همیاری شهرداریهای آذربایجان‌غربی</title>
 
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
 
@@ -13,29 +12,37 @@
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <style></style>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
-
-
-    <div class="wrapper">
-
+<body class="dark:bg-slate-800 bg-slate-100">
+    <div class="dark:bg-gray-800 dark:border-gray-700 ">
+        @include('home.sections.banner')
         @include('home.sections.header')
-
         {{-- @include('home.sections.mobile_off_canvas') --}}
-
+        @yield('search')
         @yield('content')
-
+          @yield('pictorial')
+        @yield('level1')
+        @yield('level2')
+        @yield('level3')
+        @yield('allposts')
+        @yield('links')
+        @yield('auctions')
+        @yield('projects')
+        @yield('auction')
+        @yield('allpictorials')
+        @yield('profile')
         @include('home.sections.footer')
-
     </div>
-
     <!-- JavaScript-->
-    {{-- <script src="{{ asset('/js/home/jquery-1.12.4.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('/js/home/plugins.js') }}"></script> --}}
-    {{-- <script src="{{ asset('/js/home.js') }}"></script> --}}
+    {{-- <script src="{{ asset('/js/home/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('/js/home/plugins.js') }}"></script>
+    <script src="{{ asset('/js/home.js') }}"></script> --}}
 
     {{-- Tailwinfcss js Scripts --}}
     <script>
@@ -47,108 +54,69 @@
               this.open = !this.open;
             },
           })),
-            Alpine.data("darkMode", () => ({
+            Alpine.data('darkMode', () => ({
               darkMode: false,
-              nextMode: "",
+              nextMode: '',
     
               init() {
-                this.nextMode = localStorage.nextThemeMode;
-                if (localStorage.theme === "dark") {
+                if('nextThemeMode' in localStorage){
+                      this.nextMode = localStorage.nextThemeMode;
+                }else{
+                    this.nextMode = 'dark'
+                }
+
+                if (localStorage.theme ==='dark') {
                   this.darkMode = true;
                 } else {
                   this.darkMode = false;
                 }
               },
               toDarkMode() {
-                localStorage.theme = "dark";
-                localStorage.nextThemeMode = "system";
+                localStorage.theme = 'dark';
+                localStorage.nextThemeMode = 'system';
                 this.darkMode = true;
-                this.nextMode = "system";
+                this.nextMode = 'system';
               },
     
               toSystemMode() {
                 localStorage.theme = window.matchMedia(
                   "(prefers-color-scheme: dark)"
                 ).matches
-                  ? "dark"
-                  : "light";
-                localStorage.nextThemeMode = "light";
+                  ? 'dark'
+                  : 'light';
+                localStorage.nextThemeMode = 'light';
                 this.darkMode = window.matchMedia(
-                  "(prefers-color-scheme: dark)"
+                  '(prefers-color-scheme: dark)'
                 ).matches;
-                this.nextMode = "light";
+                this.nextMode = 'light';
               },
     
               toLightMode() {
-                localStorage.theme = "light";
-                localStorage.nextThemeMode = "dark";
+                localStorage.theme = 'light';
+                localStorage.nextThemeMode = 'dark';
                 this.darkMode = false;
-                this.nextMode = "dark";
+                this.nextMode = 'dark';
               },
             })),
             Alpine.data("tabs", () => ({
-              tabName: "nature",
+              tabName: "hotel",
               tabs: [
                 {
-                  category: "nature",
+                  category: "hotel",
                   display_category: "هتل مروارید",
-                  images: [
-                    "./dist/images/hotel/hotel1.jpg",
-                    "./dist/images/hotel/hotel2.jpg",
-                    "./dist/images/hotel/room1.jpg",
-                    "./dist/images/hotel/room3.jpg",
-                    "./dist/images/hotel/room5.jpg",
-                    "./dist/images/hotel/room9.jpg",
-                    "./dist/images/hotel/room10.jpg",
-                    "./dist/images/hotel/room21.jpg",
-                    "./dist/images/hotel/hptel6.jpg",
-                    "./dist/images/hotel/shab.jpg",
-                    "./dist/images/hotel/sham1.jpg",
-                    "./dist/images/hotel/sham3.jpg",
-                    "./dist/images/hotel/shish1.jpg",
-                    "./dist/images/hotel/shish3.jpg",
-    
-                  ],
+                  
                 },
                 {
-                  category: "technology",
-                  display_category: "خانه جوان",
-                  images: [
-                    "./dist/images/phantom/pa2.jpg",
-                    "./dist/images/phantom/pa2.png",
-                    "./dist/images/phantom/pa3.jpg",
-                    "./dist/images/phantom/pa4.jpg",
-                    "./dist/images/phantom/ph1.jpg",
-    
-                  ],
+                  category: "javan",
+                  display_category: "خانه جوانی",
                 },
                 {
-                  category: "travel",
+                  category: "beton",
                   display_category: "بتن صنعت",
-                  images: [
-                    "./dist/images/beton/block.jpg",
-                    "./dist/images/beton/das1.jpg",
-                    "./dist/images/beton/kaf.jpg",
-                    "./dist/images/beton/kaf4.jpg",
-                  ],
                 },
                 {
                   category: "all",
                   display_category: "همه",
-                  images: [
-                    "./dist/images/nature/img_1.jpg",
-                    "./dist/images/nature/img_2.jpg",
-                    "./dist/images/nature/img_3.jpg",
-                    "./dist/images/nature/img_4.jpg",
-                    "./dist/images/technology/img_1.jpg",
-                    "./dist/images/technology/img_2.jpg",
-                    "./dist/images/technology/img_3.jpg",
-                    "./dist/images/technology/img_4.jpg",
-                    "./dist/images/travel/img_1.jpg",
-                    "./dist/images/travel/img_2.jpg",
-                    "./dist/images/travel/img_3.jpg",
-                    "./dist/images/travel/img_4.jpg",
-                  ],
                 },
               ],
             }));
@@ -157,13 +125,37 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
-    </script>
-    {{--  EndTailwinfcss js Scripts --}}
 
+        function imageData() {
+        return {
+        previewUrl: "",
+        updatePreview() {
+        var reader,
+        files = document.getElementById("profile_photo_path").files;
+        
+        reader = new FileReader();
+        
+        reader.onload = e => {
+        this.previewUrl = e.target.result;
+        };
+        
+        reader.readAsDataURL(files[0]);
+        },
+        clearPreview() {
+        document.getElementById("profile_photo_path").value = null;
+        this.previewUrl = "";
+        }
+        };
+        }
+    </script>
+    {{-- EndTailwinfcss js Scripts --}}
+    
     @include('sweet::alert')
 
     @yield('script')
 
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
 </body>
-
 </html>

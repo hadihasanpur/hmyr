@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-show auctions
+نمایش پروژه
 @endsection
 
 @section('content')
@@ -9,57 +9,39 @@ show auctions
 <!-- Content Row -->
 <div class="row">
 
-    <div class="col-xl-12 col-md-12 mb-4 p-4 bg-white">
+    <div class="p-4 mb-4 bg-white col-xl-12 col-md-12">
         <div class="mb-4 text-center text-md-right">
-            <h5 class="font-weight-bold">مزایده : {{ $auction->name }}</h5>
+            <h5 class="font-weight-bold">نام پروژه : {{ $project->name }}</h5>
         </div>
         <hr>
 
         <div class="row">
             <div class="form-group col-md-3">
-                <label>عنوان مزایده</label>
-                <input class="form-control" type="text" value="{{ $auction->title }}" disabled>
+                <label>نام پروژه</label>
+                <input class="form-control" type="text" value="{{ $project->project }}" disabled>
             </div>
             <div class="form-group col-md-3">
-                <label>متن مزایده</label>
-                <input class="form-control" type="text" value="{{ $auction->body }}" disabled>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="is_active">وضعیت</label>
-                <select class="form-control" disabled id="is_active" name="is_active">
-                    <option value="1" selected>فعال</option>
-                    <option value="0">غیرفعال</option>
-                </select>
+                <label> کارفرما</label>
+                <input class="form-control" type="text" value="{{ $project->employer }}" disabled>
             </div>
             <div class="form-group col-md-3">
-                <label>تاریخ ایجاد</label>
-                <input class="form-control" type="text" value="{{ verta($auction->created_at) }}" disabled>
+                <label> مشاور</label>
+                <input class="form-control" type="text" value="{{ $project->consultant }}" disabled>
             </div>
             <div class="form-group col-md-3">
-                <label>تاریخ شروع مزایده</label>
-                <input class="form-control" type="text" value="{{ verta($auction->started_at) }}" disabled>
+                <label> هزینه اجرا</label>
+                <input class="form-control" type="text" value="{{ $project->cost }}" disabled>
             </div>
             <div class="form-group col-md-3">
-                <label>تاریخ اتمام مزایده</label>
-                <input class="form-control" type="text" value="{{ verta($auction->finished) }}" disabled>
+                <label>تاریخ شروع</label>
+                <input class="form-control" type="text" value="{{ $project->Projectstart }}" disabled>
             </div>
-            
-
+            <div class="form-group col-md-3">
+                <label>تاریخ پایان </label>
+                <input class="form-control" type="text" value="{{ $project->Projectend }}" disabled>
+            </div>
         </div>
-        <div class="col-md-12">
-            <hr>
-            @foreach ($files as $file)
-            <div class="col-md-8">
-                <div class="row">
-                    <a href="{{ url(env('AUCTION_FILES_UPLOAD_PATH') . $file->file) }}">{{ $file->file }}</a>
-                </div>
-            </div>
-            @endforeach
-        </div>
-
-       
-
-        <a href="{{ route('admin.auctions.index') }}" class="btn btn-dark mt-5">بازگشت</a>
+        <a href="{{ route('admin.projects.index') }}" class="mt-5 btn btn-dark">بازگشت</a>
     </div>
 
 </div>

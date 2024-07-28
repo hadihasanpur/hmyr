@@ -1,20 +1,20 @@
 @extends('admin.layouts.admin')
 @section('title')
-لبست واحدها
+لبست پروژه ها
 @endsection
 @section('content')
 <!-- Content Row -->
 <div class="row">
-    <div class="col-xl-12 col-md-12 mb-4 p-4 bg-white">
-        <div class="d-flex flex-column text-center flex-md-row justify-content-md-between mb-4">
-            <h5 class="font-weight-bold mb-3 mb-md-0">لیست واحد ها </h5>
-            <a class="btn btn-sm btn-outline-primary" href="{{ route('admin.departments.create') }}">
+    <div class="p-4 mb-4 bg-white col-xl-12 col-md-12">
+        <div class="mb-4 text-center d-flex flex-column flex-md-row justify-content-md-between">
+            <h5 class="mb-3 font-weight-bold mb-md-0">لیست پروژه ها </h5>
+            <a class="btn btn-sm btn-outline-primary" href="{{ route('admin.projects.create') }}">
                 <i class="fa fa-plus"></i>
-                ایجاد واحد جدید
+                ایجاد پروزه جدید
             </a>
         </div>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped text-center">
+            <table class="table text-center table-bordered table-striped font-titr">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -25,6 +25,7 @@
                         <th> هزینه اجرا </th>
                         <th>شروع</th>
                         <th>پایان</th>
+                        <th>عملیات</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,31 +38,37 @@
                         </th>
                         <th>
                             <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">
+                                {{ $project->project }}
+                            </a>
+                        </th>
+                        <th>
+                            <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">
                                 {{ $project->employer }}
                             </a>
                         </th>
                         <th>
-                            <a href="{{ route('admin.projects.sdescriptionhow', ['project' => $project->id]) }}">
+                            <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">
                                 {{ $project->consultant }}
                             </a>
                         </th>
                         <th>
-                            <a href="{{ route('admin.projects.sdescriptionhow', ['project' => $project->id]) }}">
+                            <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">
                                 {{ $project->location }}
                             </a>
-                        </th> <th>
-                            <a href="{{ route('admin.projects.sdescriptionhow', ['project' => $project->id]) }}">
+                        </th> 
+                        <th>
+                            <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">
                                 {{ $project->cost }}
                             </a>
                         </th>
                         <th>
                             <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">
-                                {{ verta($project->start)->format('Y') }}
+                                {{ verta($project->Projectstart)->format('Y') }}
                             </a>
                         </th>
                         <th>
                             <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">
-                                {{ verta($project->end)->format('Y') }}
+                                {{ verta($project->Projectend)->format('Y') }}
                             </a>
                         </th>
                         <th>
@@ -72,20 +79,20 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}"
-                                        class="dropdown-item text-right">
+                                        class="text-right dropdown-item">
                                         ویرایش
                                     </a>
 
                                     <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}"
-                                        class="dropdown-item text-right">
+                                        class="text-right dropdown-item">
                                         نمایش
                                     </a>
                                     <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}"
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-sm btn-outline-danger dropdown-item text-right"
-                                            type="submit"> <span class="badge bg-danger text-wrap text-white p-1">حذف کل
+                                        <button class="text-right btn btn-sm btn-outline-danger dropdown-item"
+                                            type="submit"> <span class="p-1 text-white badge bg-danger text-wrap">حذف کل
                                                 پروزه</span></button>
                                     </form>
                                 </div>
@@ -96,8 +103,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex justify-content-center mt-5">
-            {{ $projects->render() }}
+        <div class="mt-5 d-flex justify-content-center font-titr">
+            {{ $projects->links('pagination::bootstrap-4') }}
         </div>
     </div>
 </div>

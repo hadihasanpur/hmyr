@@ -26,16 +26,20 @@ edit users
                     <input class="form-control" name="name" type="text" value="{{ $user->name }}">
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="name">شماره تلفن همراه</label>
+                    <label for="cellphone">شماره تلفن همراه</label>
                     <input class="form-control" name="cellphone" type="text" value="{{ $user->cellphone }}">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="email">صندوق پستی </label>
+                    <input class="form-control" name="email" type="text" value="{{ $user->email }}">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="role">نقش کاربر</label>
                     <select class="form-control" name="role" id="role">
-                        <option></option>
                         @foreach ($roles as $role)
                         <option value="{{ $role->name }}" {{ in_array($role->id , $user->roles->pluck('id')->toArray())
-                            ? 'selected' : '' }}>{{ $role->display_name }}</option>
+                            ? 'selected' : '' }}>{{ $role->display_name }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
