@@ -15,13 +15,15 @@ class CreateAuctionsTable extends Migration
     {
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
             $table->text('body');
             $table->string('img');
             $table->string('slug')->unique();
-            $table->string('is_active');
-            $table->string('started_at');
-            $table->string('finished_at');
+            $table->boolean('is_active')->default(1);
+            $table->date('started_at');
+            $table->date('finished_at');
             $table->timestamps();
         });
     }

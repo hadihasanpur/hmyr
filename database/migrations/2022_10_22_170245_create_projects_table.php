@@ -15,13 +15,15 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('project');
-            $table->string('employer');//karfarma
-            $table->string('consultant'); //moshaver  degree
-            $table->string('location');
-            $table->bigInteger('cost');
-            $table->year('start');
-            $table->year('end');
+             $table->foreignId('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('project')->comment('نام پروژه');
+            $table->string('employer')->comment('کارفرما ');
+            $table->string('consultant')->comment('مشاور');
+            $table->string('location')->comment('محل اجرا');
+            $table->bigInteger('cost')->comment('هزینه اجرا');
+            $table->year('start')->comment('شروع');
+            $table->year('end')->comment('پایان');
             $table->timestamps();
         });
     }

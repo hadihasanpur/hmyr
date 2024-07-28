@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDepartmentImagesTable extends Migration
+class CreateLevel1ImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateDepartmentImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('department_images', function (Blueprint $table) {
+        Schema::create('level1_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('department_id');
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->foreignId('level1_id');
+            $table->foreign('level1_id')->references('id')->on('level1')->onDelete('cascade');
             $table->string('image')->nullable();
+            $table->mediumText('underImage')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateDepartmentImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('department_images');
+        Schema::dropIfExists('level1_images');
     }
 }
