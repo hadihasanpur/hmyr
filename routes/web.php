@@ -68,27 +68,22 @@ use App\Http\Controllers\Admin\PictorialImageController;
         Route::delete('/posts/{post}/images-destroy', [PostImageController::class,'destroy',])->name('posts.images.destroy');
         Route::put('/posts/{post}/images-set-primary', [PostImageController::class,'setPrimary',])->name('posts.images.set_primary');
         Route::post('/posts/{post}/images-add', [PostImageController::class,'add',])->name('posts.images.add');
-
         // Edit Auction Image created by myself
         Route::get('/auctions/{auction}/files-edit', [AuctionFilesController::class,'edit',])->name('auctions.files.edit');
         Route::delete('/auctions/{auction}/files-destroy', [AuctionFilesController::class,'destroy',])->name('auctions.files.destroy');
         Route::post('/auctions/{auction}/files-add', [AuctionFilesController::class,'add',])->name('auctions.files.add');
-
-
          // Edit Pictorial Image created by mysel
         Route::get('/pictorials/{pictorial}/images-edit', [PictorialImageController::class,'edit', ])->name('pictorials.images.edit');
         Route::get('/pictorials/{pictorialImage}/images-edit', [PictorialImageController::class,'edit',])->name('pictorials.images.edit1');
         Route::delete('/pictorials/{pictorial}/images-destroy', [PictorialImageController::class,'destroy',])->name('pictorials.images.destroy');
         Route::put('/pictorials/{pictorial}/images-set-primary', [PictorialImageController::class,'setPrimary',])->name('pictorials.images.set_primary');
         Route::post('/pictorials/{pictorial}/images-add', [PictorialImageController::class,'add',])->name('pictorials.images.add');
-
         // Edit Level1 Image created by Level1ImageController
         Route::post('/level1s/{level1}/images-add',           [Level1ImageController::class,'add',       ])->name('level1s.images.add'        );
         Route::get('/level1s/{level1}/images-edit',           [Level1ImageController::class,'edit',      ])->name('level1s.images.edit'       );
         Route::put('/level1s/{level1}/images-set-primary',    [Level1ImageController::class,'setPrimary',])->name('level1s.images.set_primary');
         Route::put('/level1s/{level1}/images-set-underImage', [Level1ImageController::class,'underImage',])->name('level1s.images.underImage' );
         Route::delete('/level1s/{level1}/images-destroy',     [Level1ImageController::class,'destroy',   ])->name('level1s.images.destroy'    );
-
         // Edit Level2 Image created by myself
         Route::get('/level2s/{level2}/images-edit', [Level2ImageController::class,'edit',])->name('level2s.images.edit');
         Route::delete('/level2s/{level2}/images-destroy', [Level2ImageController::class,'destroy',])->name('level2s.images.destroy');
@@ -96,7 +91,6 @@ use App\Http\Controllers\Admin\PictorialImageController;
         Route::put('/level2s/{level2}/images-set-underImage', [Level2ImageController::class,'underImage',])->name('level2s.images.underImage');
         Route::post('/level2s/{level2}/images-add', [Level2ImageController::class,'add',])->name('level2s.images.add');
         Route::post('/level2s/{level2}/store-Avatar', [Level2ImageController::class,'add',])->name('level2s.images.storeAvatar');
-
          // Edit Level3 Image created by myself
         Route::get('/level3s/{level3}/images-edit', [Level3ImageController::class,'edit',])->name('level3s.images.edit');
         Route::delete('/level3s/{level3}/images-destroy', [Level3ImageController::class,'destroy',])->name('level3s.images.destroy');
@@ -109,28 +103,16 @@ use App\Http\Controllers\Admin\PictorialImageController;
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/forgot-password', function () {   return view('auth.forgot-password');})->name('forgot-password');
 Route::get('/reset-password', function () { return view('auth.reset-password');})->name('reset-password');
-
 Route::prefix('profile')->name('home.')->group(function () {Route::get('/', [UserProfileController::class, 'index'])->name('users_profile.index' );
-
-        // Route::get('/comments', [
-        //     HomeCommentController::class,
-        //     'usersProfileIndex',
-        // ])->name('comments.users_profile.index');
-
-Route::get('/orders', [CartController::class,'usersProfileIndex', ])->name('orders.users_profile.index'); });
-
-
+});
 Route::get('/login/{provider}', [ AuthController::class,'redirectToProvider',])->name('provider.login');
 Route::get('/login/{provider}/callback', [ AuthController::class,'handleProviderCallback',]);
-
 Route::get('/logout/', [AuthController::class, 'logout']);
-
 Route::middleware(['auth', 'verified'])->get('/profile', function () {
     return view('home.profile');}) ->name('profile');
     Route::middleware(['auth', 'verified'])->get('/password', function () {
         return view('home.password');
     })->name('password');
-    
 Route::get('/',                      [HomeController::class,'index'        ])->name('home.index'        );
 Route::get('allposts',               [HomeController::class,'allposts'     ])->name('home.allposts'     );
 Route::get('allauctions',            [HomeController::class,'auctions'     ])->name('home.auctions'     );
