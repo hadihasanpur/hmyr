@@ -21,6 +21,7 @@ class CreatePictorialsTable extends Migration
             $table->string('slug')->unique();
             $table->boolean('is_active')->default(1);
             $table->date('date');
+            $table->string('primary_image');
             $table->timestamps();
         });
     }
