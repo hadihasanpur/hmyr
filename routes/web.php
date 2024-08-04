@@ -103,16 +103,16 @@ use App\Http\Controllers\Admin\PictorialImageController;
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/forgot-password', function () {   return view('auth.forgot-password');})->name('forgot-password');
 Route::get('/reset-password', function () { return view('auth.reset-password');})->name('reset-password');
-Route::prefix('profile')->name('home.')->group(function () {Route::get('/', [UserProfileController::class, 'index'])->name('users_profile.index' );
+Route::prefix('profile')->name('home.')->group(function () {
+Route::get('/', [UserProfileController::class, 'index'])->name('users_profile.index');
 });
 Route::get('/login/{provider}', [ AuthController::class,'redirectToProvider',])->name('provider.login');
+
 Route::get('/login/{provider}/callback', [ AuthController::class,'handleProviderCallback',]);
+
 Route::get('/logout/', [AuthController::class, 'logout']);
-Route::middleware(['auth', 'verified'])->get('/profile', function () {
-    return view('home.profile');}) ->name('profile');
-    Route::middleware(['auth', 'verified'])->get('/password', function () {
-        return view('home.password');
-    })->name('password');
+Route::middleware(['auth', 'verified'])->get('/profile', function () { return view('home.profile');}) ->name('profile');
+Route::middleware(['auth', 'verified'])->get('/password', function () {return view('home.password');})->name('password');
 Route::get('/',                      [HomeController::class,'index'        ])->name('home.index'        );
 Route::get('allposts',               [HomeController::class,'allposts'     ])->name('home.allposts'     );
 Route::get('allauctions',            [HomeController::class,'auctions'     ])->name('home.auctions'     );

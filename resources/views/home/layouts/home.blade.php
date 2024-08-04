@@ -26,7 +26,7 @@
         {{-- @include('home.sections.mobile_off_canvas') --}}
         @yield('search')
         @yield('content')
-          @yield('pictorial')
+        @yield('pictorial')
         @yield('level1')
         @yield('level2')
         @yield('level3')
