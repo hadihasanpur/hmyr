@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -19514,7 +19514,7 @@ __webpack_require__(/*! ./files/rating.js */ "./resources/js/home/files/rating.j
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!*****************************************!*\
   !*** multi ./resources/js/home/home.js ***!
   \*****************************************/
